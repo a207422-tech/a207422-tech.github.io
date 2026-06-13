@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xu Runkang - e-Portfolio</title>
+    <style>
+        :root {
+            /* SDG 12: Responsible Consumption and Production Theme */
+            --primary: #BF8B2E; 
+            --primary-dark: #996e23;
+            --secondary: #4a3b2c; 
+            --bg-color: #faf9f7;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Home Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .hero-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            max-width: 800px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .sdg-box {
+            background-color: #fff9e6;
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 4px;
+            max-width: 800px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .card-reflection {
+            font-size: 0.95rem;
+            font-style: italic;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            margin-top: 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+        }
+
+        /* Text Blocks (Reflection, Skills, Resources) */
+        .text-block {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background-color: rgba(191, 139, 46, 0.15);
+            color: var(--primary-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 1px solid rgba(191, 139, 46, 0.3);
+        }
+
+        .resources-list {
+            list-style-type: none;
+        }
+
+        .resources-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .resources-list li::before {
+            content: '▹';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            section {
+                padding: 50px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="#home" class="logo">XU RUNKANG</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#labs">Labs</a>
+            <a href="#projects">Projects</a>
+            <a href="#reflection">Reflection</a>
+            <a href="#skills">Skills</a>
+            <a href="#resources">Resources</a>
+        </div>
+    </nav>
+</header>
+
+<section id="home">
+    <div class="hero">
+        <h1>XU RUNKANG</h1>
+        <div class="hero-details">
+            <span class="badge">A207422</span>
+            <span class="badge">BIT (Hons)</span>
+            <span class="badge">Instructor: DR_Dek</span>
+        </div>
+        <p>
+            As a dedicated Bachelor of Information Technology student, I am deeply passionate about utilizing robust software engineering methodologies to design scalable and user-centric digital applications. My primary learning goals focus on mastering modern full-stack mobile development frameworks, data persistence architectures, and cloud-native integrations to bridge the gap between complex computing systems and intuitive user interfaces. I aim to systematically apply my technical knowledge to build high-performance software solutions that solve practical, real-world industry challenges.
+        </p>
+        <div class="sdg-box">
+            <strong>SDG 12: Responsible Consumption and Production</strong><br><br>
+            Eco Brew Tracker empowers users to minimize their ecological footprint by monitoring precise brewing parameters, reducing domestic coffee waste, and syncing shared sustainability metrics remotely to the community cloud.
+        </div>
+    </div>
+</section>
+
+<section id="labs">
+    <h2 class="section-title">Laboratory Works</h2>
+    <div class="grid">
+        
+        <article class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/jz2FeenDbJc" title="Lab 1 UI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 1: UI</h3>
+                <p class="card-desc">Building the initial static user interface for the application using Jetpack Compose.</p>
+                <p class="card-reflection">
+                    Lab 1 focused on building the initial static user interface for the Eco Brew Tracker application using Jetpack Compose. It provided a solid foundation in declarative UI design, allowing me to master component placement and layout structures before introducing dynamic states. This phase successfully established the clean visual architecture necessary for all subsequent development stages of the application.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7wfsZ19ORJY" title="Lab 2 Interaction" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 2: Interaction</h3>
+                <p class="card-desc">Introducing interactivity and dynamic state management to capture user inputs in real time.</p>
+                <p class="card-reflection">
+                    Lab 2 introduced interactivity and dynamic state management to Eco Brew Tracker by capturing and tracking user inputs in real time. I learned to utilize state tools within Jetpack Compose to manage mutable data, such as tracking precise coffee brewing parameters and ground dosages. This phase successfully transformed a static visual layout into a responsive interface, laying the essential groundwork for shared application workflows.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/MGH3la0bjjM" title="Lab 3 Material Design" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 3: Material Design</h3>
+                <p class="card-desc">Upgrading the UI by applying Material Design foundations for visual consistency.</p>
+                <p class="card-reflection">
+                    Lab 3 focused on upgrading the user interface of Eco Brew Tracker by applying Material Design foundations to ensure strict visual consistency across the application. I learned to implement customized color themes, typography, and standard Material components to enhance the overall user experience and accessibility. This aesthetic refinement successfully bridged the gap between basic programmatic functionality and a polished, professional mobile interface.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/vGhWe2ov0e0" title="Lab 4 Navigation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 4: Navigation</h3>
+                <p class="card-desc">Implementing complex multi-screen workflows and navigation patterns.</p>
+                <p class="card-reflection">
+                    Lab 4 focused on implementing complex multi-screen workflows and navigation patterns within the Eco Brew Tracker app using Navigation Compose. I learned how to structure explicit navigation routes and leverage a shared ViewModel to pass and update UI state seamlessly across different screens. This phase successfully transformed separate design components into a unified, fluid application with smooth transitions and robust state handling.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/c54eVV0TcCw" title="Lab 5 Room" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 5: Room</h3>
+                <p class="card-desc">Introducing local data persistence by integrating the Room Database.</p>
+                <p class="card-reflection">
+                    Lab 5 introduced local data persistence into Eco Brew Tracker by integrating the Room Database to save user coffee data permanently on the device. I learned how to configure data access objects (DAOs), entities, and database instances to ensure that the application remains fully functional and accessible offline. This implementation successfully transitioned the app from temporary ViewModel state into a structured, robust local data storage solution.
+                </p>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section id="projects">
+    <h2 class="section-title">Major Projects</h2>
+    <div class="grid">
+        
+        <article class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/WmEvM5Sp8lk" title="Project 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Eco Brew Tracker (Phase 1)</h3>
+                <p class="card-desc">
+                    <strong>Problem Statement:</strong> Coffee enthusiasts often struggle to maintain consistent brewing parameters, leading to suboptimal extractions and unexpected domestic coffee waste. Eco Brew Tracker solves this by providing a structured logging interface to monitor brewing metrics, encouraging mindful coffee consumption habits.
+                </p>
+                <p class="card-reflection">
+                    Project 1 successfully integrated multi-screen navigation with centralized state management using a single shared ViewModel. I mastered the principles of state hoisting by passing transient data across five functional screens and dynamically updating the list UI when a new log was added. This phase reinforced the importance of standardizing design flows and state isolation before transitioning into backend data structures.
+                </p>
+                <a href="https://github.com/a207422-tech/A207422_XU_RUNKANG_DR_Dek_Project1" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/9nqUym89ILI" title="Project 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Eco Brew Tracker (Phase 2)</h3>
+                <p class="card-desc">
+                    <strong>Problem Statement:</strong> While individual coffee brewing parameters can be tracked locally, a lack of shared community data makes it difficult to coordinate wide-scale waste reduction efforts. Eco Brew Tracker addresses this by utilizing remote cloud synchronization and hardware-aware triggers to encourage collaborative, sustainable coffee consumption.
+                </p>
+                <p class="card-reflection">
+                    Project 2 advanced my software engineering skills by requiring the concurrent implementation of local database storage via Room and cloud synchronization via Firebase Firestore. I mastered handling hardware lifecycles by capturing physical movement through the phone's accelerometer and gained extensive experience parsing real-time JSON payloads using Retrofit REST APIs. Ultimately, I learned how to build a scalable architecture that bridges physical sensor inputs with multi-layered data persistence to provide a fluid user experience.
+                </p>
+                <a href="https://github.com/a207422-tech/A207422_XU_RUNKANG_DR_Dek_Project1" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section id="reflection">
+    <h2 class="section-title">Reflection & Learning Journey</h2>
+    <div class="text-block">
+        <p>
+            My progression from Lab 1 to Project 2 has driven a comprehensive evolution in my mobile development capabilities, advancing from basic static layouts to architecting complex, data-driven mobile applications. Balancing offline-first persistence via Room, real-time cloud backup through Firebase, and external REST API calls introduced critical technical challenges regarding asynchronous threads and UI state management. Ultimately, overcoming these software engineering hurdles has empowered me to build a responsive, hardware-aware application that effectively targets the resource-saving goals of SDG 12.
+        </p>
+    </div>
+</section>
+
+<section id="skills">
+    <h2 class="section-title">Skills & Tech Stack</h2>
+    <div class="text-block">
+        <p style="margin-bottom: 15px; color: var(--text-muted);">Core competencies and technologies utilized throughout the coursework:</p>
+        <div class="skills-container">
+            <span class="skill-tag">Kotlin</span>
+            <span class="skill-tag">Jetpack Compose</span>
+            <span class="skill-tag">Jetpack Navigation</span>
+            <span class="skill-tag">Room Database</span>
+            <span class="skill-tag">Retrofit</span>
+            <span class="skill-tag">Firebase Firestore</span>
+            <span class="skill-tag">Android Sensor Framework</span>
+            <span class="skill-tag">MVVM Architecture</span>
+            <span class="skill-tag">State Management</span>
+        </div>
+    </div>
+</section>
+
+<section id="resources">
+    <h2 class="section-title">Resources & Acknowledgements</h2>
+    <div class="text-block">
+        <ul class="resources-list">
+            <li><strong>Retrofit & Gson:</strong> Used for asynchronous network connections and parsing live JSON data from external public REST APIs.</li>
+            <li><strong>Room Database:</strong> Implemented for handling Android local SQLite data persistence and offline caching.</li>
+            <li><strong>Firebase Firestore SDK:</strong> Utilized for real-time cloud data storage and collaborative community syncing.</li>
+            <li><strong>Android Sensor API:</strong> Leveraged to interface with the device's hardware Accelerometer for motion detection.</li>
+            <li><strong>AI Assistance Acknowledgement:</strong> Generative AI assistance was strictly utilized as a collaborative peer tool to help optimize the application's clean state architecture, troubleshoot complex coroutine lifecycles, and assist in structural code debugging.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <p><strong>XU RUNKANG</strong> | Matric No: A207422</p>
+    <p>BACHELOR OF INFORMATION TECHNOLOGY WITH HONOURS</p>
+    <p>&copy; 2026. Built for educational portfolio purposes.</p>
+</footer>
+
+</body>
+</html>
